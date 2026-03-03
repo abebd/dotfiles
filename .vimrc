@@ -3,6 +3,8 @@ set backupdir^=$LOCALAPPDATA/vim/backup//
 set undodir^=$LOCALAPPDATA/vim/undo//
 set viminfofile=$LOCALAPPDATA/vim/viminfo
 
+let g:VIMWIKI_PATH = 'H:\docs'
+
 filetype plugin indent on
 
 call plug#begin()
@@ -18,6 +20,7 @@ call plug#begin()
     Plug 'dense-analysis/ale'
     Plug 'wellle/context.vim'
     Plug 'itchyny/lightline.vim'
+    Plug 'vimwiki/vimwiki'
 
 	"themes
     Plug 'sainnhe/gruvbox-material'
@@ -39,18 +42,13 @@ set expandtab
 set ignorecase
 set ffs=unix,dos
 set clipboard=unnamedplus
-hi Normal ctermbg=NONE guibg=NONE
-set lazyredraw
-set ttyfast
-set synmaxcol=200
-set updatetime=1000
+set confirm
 
 hi Normal ctermbg=NONE guibg=NONE
 hi NonText ctermbg=NONE guibg=NONE
 hi EndOfBuffer ctermbg=NONE guibg=NONE
 hi LineNr ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
-
 set lazyredraw
 set ttyfast
 set synmaxcol=200
@@ -61,11 +59,14 @@ set guifont=Consolas:h14
 set guioptions-=m
 set guioptions-=T
 set guioptions=Ace
+set guioptions-=e
 set encoding=utf-8
 set fileencoding=utf-8
 set nowrap
 set autoindent
 set termguicolors
+
+set sessionoptions+=tabpages,globals
 
 let g:lightline = {
       \ 'colorscheme': 'molokai',
@@ -87,12 +88,15 @@ let g:gruvbox_material_background = 'hard'
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-let g:ale_set_quickfix = 1
+let g:ale_set_quickfix = 1 
 let g:ale_set_loclist = 1
+let g:ale_linters_explicit = 1
 
 let g:ale_linters = {
-\   'python': ['ruff'],
-\   'sql': ['sqlfluff'],
+"\   'python': ['ruff'],
+\   'sql': ['sqlfluff']
+"\   'ps1': ['psscriptanalyzer'],
+"\   'yaml': ['yamllint']
 \}
 let g:ale_fixers = {
 \   'python': ['ruff'],
@@ -100,9 +104,8 @@ let g:ale_fixers = {
 
 let g:ale_sql_sqlfluff_options = '--dialect tsql'
 
-let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-
-let g:ale_sql_sqlfluff_options = '--dialect tsql'
+let g:vimwiki_list = [{'path': g:VIMWIKI_PATH,
+                      \ 'syntax': 'markdown', 'ext': 'md'}]
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
 
@@ -261,3 +264,38 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
 " --@main-end/
+
+function! VimWikiTodo()
+    if !exists('g:VIMWIKI_PATH')
+        echo "g:VIMWIKI_PATH is not set"
+        return
+    endif
+
+    let l:cmd = 'rg --vimgrep --no-heading --smart-case ' .
+                \ shellescape('\[ \] TODO') . ' ' .
+                \ shellescape(g:VIMWIKI_PATH)
+
+    let l:result = system(l:cmd)
+
+    if v:shell_error
+        echo "No TODOs found (or rg error)"
+        return
+    endif
+
+    cexpr l:result
+    copen
+endfunction
+
+command! TODO call VimWikiTodo()
+
+augroup makeprg_linters
+    autocmd!
+
+    autocmd FileType yaml setlocal makeprg=yamllint\ -f\ parsable\ %
+    autocmd FileType yml setlocal makeprg=yamllint\ -f\ parsable\ %
+
+    autocmd FileType ps1 setlocal makeprg=powershell\ -NoProfile\ -Command\ "Invoke-ScriptAnalyzer\ -Path\ '%'\ |\ Format-Table\ -AutoSize"
+    autocmd FileType ps1 setlocal errorformat=%f:%l:%c:\ %t%*[^:]:\ %m
+
+augroup END
+
