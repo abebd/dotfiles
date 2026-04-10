@@ -244,7 +244,7 @@ workspace 1 output $mon2
 workspace 2 output $mon2
 workspace 3 output $mon2
 workspace 4 output $mon2
-workspace 5 output $mon2
+workspace 5 output $mon1
 
 workspace 6 output $mon1
 workspace 7 output $mon1
