@@ -10,7 +10,8 @@ import = [
 decorations = "full"
 decorations_theme_variant = "Dark"
 startup_mode = "Maximized"
-opacity = 0.85
+#opacity = 0.85
+opacity = 1.00
 
 # Font configuration - all font settings in ONE section
 [font]

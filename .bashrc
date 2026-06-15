@@ -9,7 +9,8 @@ M_WHITE='255'
 set_prompt() {
     local EXIT="$?"
     local GIT_FORMAT=" (\[\e[38;5;${M_PINK}m\]%s\[\e[0m\])"
-    local GIT_INFO=$(__git_ps1 "$GIT_FORMAT")
+    #local GIT_INFO=$(__git_ps1 "$GIT_FORMAT")
+    local GIT_INFO=""
 
     # 1. Determine the color based on success/fail
     local PROMPT_COLOR
@@ -33,3 +34,6 @@ set_prompt() {
 
 PROMPT_COMMAND=set_prompt
 
+
+# uv
+export PATH="/home/albin/.local/bin:$PATH"

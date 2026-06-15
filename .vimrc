@@ -3,7 +3,7 @@ set backupdir^=$LOCALAPPDATA/vim/backup//
 set undodir^=$LOCALAPPDATA/vim/undo//
 set viminfofile=$LOCALAPPDATA/vim/viminfo
 
-let g:VIMWIKI_PATH = 'H:\docs'
+let g:VIMWIKI_PATH = '~/vimwiki'
 
 filetype plugin indent on
 
@@ -251,6 +251,8 @@ let g:Netrw_UserMaps = [
 \   ['<S-Tab>', 'NetrwBufRemove'],
 \]
 
+set grepprg=rg\ --vimgrep
+
 " compilers
 autocmd FileType python setlocal makeprg=uv\ run\ ruff\ check\ --quiet\ --output-format=concise
 "autocmd FileType python setlocal errorformat=%f:%l%c:\ %m
@@ -272,7 +274,7 @@ function! VimWikiTodo()
     endif
 
     let l:cmd = 'rg --vimgrep --no-heading --smart-case ' .
-                \ shellescape('\[ \] TODO') . ' ' .
+                \ shellescape('\[[^X]\] TODO') . ' ' .
                 \ shellescape(g:VIMWIKI_PATH)
 
     let l:result = system(l:cmd)
@@ -286,7 +288,13 @@ function! VimWikiTodo()
     copen
 endfunction
 
-command! TODO call VimWikiTodo()
+command! TODO2 call VimWikiTodo()
+
+function! DiarySearch(term)
+    execute 'grep ' . shellescape(a:term) . ' ' . shellescape(g:VIMWIKI_PATH) . '\diary'
+endfunction
+
+command! -nargs=1 D call DiarySearch(<q-args>)
 
 augroup makeprg_linters
     autocmd!
