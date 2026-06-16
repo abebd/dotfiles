@@ -3,7 +3,7 @@ set backupdir^=$LOCALAPPDATA/vim/backup//
 set undodir^=$LOCALAPPDATA/vim/undo//
 set viminfofile=$LOCALAPPDATA/vim/viminfo
 
-let g:VIMWIKI_PATH = '~/vimwiki'
+let g:VIMWIKI_PATH = 'H:\docs'
 
 filetype plugin indent on
 
@@ -43,6 +43,7 @@ set ignorecase
 set ffs=unix,dos
 set clipboard=unnamedplus
 set confirm
+set background=dark
 
 hi Normal ctermbg=NONE guibg=NONE
 hi NonText ctermbg=NONE guibg=NONE
@@ -81,7 +82,7 @@ let g:lightline = {
 
 set noshowmode " lightline thing to remove '-- INSERT --' at bottom of screen
 
-colorscheme molokai
+colorscheme retrobox 
 
 let g:gruvbox_material_background = 'hard'
 
@@ -288,7 +289,30 @@ function! VimWikiTodo()
     copen
 endfunction
 
-command! TODO2 call VimWikiTodo()
+command! TODO call VimWikiTodo()
+
+function! VimWikiTicketsTodo()
+    if !exists('g:VIMWIKI_PATH')
+        echo "g:VIMWIKI_PATH is not set"
+        return
+    endif
+
+    let l:cmd = 'rg --vimgrep --no-heading --smart-case ' .
+                \ shellescape('\[[^X]\] TODO DRIV') . ' ' .
+                \ shellescape(g:VIMWIKI_PATH)
+
+    let l:result = system(l:cmd)
+
+    if v:shell_error
+        echo "No TODO tickets found (or rg error)"
+        return
+    endif
+
+    cexpr l:result
+    copen
+endfunction
+
+command! TICKETS call VimWikiTicketsTodo()
 
 function! DiarySearch(term)
     execute 'grep ' . shellescape(a:term) . ' ' . shellescape(g:VIMWIKI_PATH) . '\diary'
@@ -306,4 +330,6 @@ augroup makeprg_linters
     autocmd FileType ps1 setlocal errorformat=%f:%l:%c:\ %t%*[^:]:\ %m
 
 augroup END
+
+cnoreabbrev <expr> git (getcmdtype() == ':' && getcmdline() == 'git') ? 'Git' : 'git'
 
