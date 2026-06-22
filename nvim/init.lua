@@ -15,3 +15,4 @@ vim.opt.tabstop = 4           -- Number of spaces tabs count for
 vim.opt.expandtab = true      -- Turn tabs into spaces
 vim.opt.updatetime = 300      -- Snappier diagnostics/hover response
 
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
