@@ -56,7 +56,7 @@ tiling_drag modifier titlebar
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -67,7 +67,8 @@ bindsym $mod+Shift+q kill
 #bindcode $mod+40 exec "rofi -combi-modi window,drun,ssh -show combi"
 #bindcode $mod+40 exec "rofi -combi-modi window,drun -show combi"
 #bindcode $mod+40 exec "rofi -combi-modi window,drun -show combi"
-bindcode $mod+40 exec "~/.config/rofi/launchers/type-2/launcher.sh"
+#bindcode $mod+40 exec "~/.config/rofi/launchers/type-2/launcher.sh"
+bindcode $mod+40 exec "rofi -theme tokyonight -show drun"
 bindsym $mod+g exec "firefox"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.

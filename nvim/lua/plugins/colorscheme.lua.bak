@@ -1,0 +1,15 @@
+-- Optional Configuration (adjust to your liking)
+require("folke/tokyonight.nvim").setup({
+    style = "storm", -- Choose between: storm, night, moon, or day
+    transparent = false, -- Set to true if you want your terminal bg to show through
+    terminal_colors = true, -- Configure the colors used in :terminal
+    styles = {
+        comments = { italic = true },
+        keywords = { italic = true },
+        sidebars = "dark", -- dark style for lualine, neo-tree, etc.
+        floats = "dark",
+    },
+})
+
+-- Load the colorscheme
+vim.cmd[[colorscheme tokyonight]]

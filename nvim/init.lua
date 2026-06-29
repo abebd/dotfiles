@@ -6,8 +6,6 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 require("lsp.powershell_es")
 
-vim.cmd("colorscheme retrobox")
-
 vim.opt.number = true         -- Show line numbers
 vim.opt.relativenumber = true -- Relative line numbers (great for jumping around)
 vim.opt.shiftwidth = 4        -- Size of an indent
@@ -17,3 +15,5 @@ vim.opt.updatetime = 300      -- Snappier diagnostics/hover response
 vim.opt.clipboard = "unnamedplus"
 
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
+
+vim.cmd[[colorscheme tokyonight-night]]

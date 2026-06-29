@@ -1,0 +1,20 @@
+# Core Colors (Tokyo Night)
+set $bg           #1a1b26
+set $fg           #c0caf5
+set $red          #f7768e
+set $green        #9ece6a
+set $yellow       #e0af68
+set $blue         #7aa2f7
+set $purple       #bb9af7
+set $cyan         #7dcfff
+set $comment_grey #565f89
+
+# Window Decorations
+# class                 border  backgr. text    indicator child_border
+client.focused          $blue   $blue   $bg     $purple   $blue
+client.focused_inactive $bg     $bg     $fg     $bg       $bg
+client.unfocused        $bg     $bg     $comment_grey $bg   $bg
+client.urgent           $red    $red    $bg     $red      $red
+client.placeholder      $bg     $bg     $fg     $bg       $bg
+
+client.background       $bg
