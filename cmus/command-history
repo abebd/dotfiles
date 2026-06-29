@@ -1,0 +1,59 @@
+colorscheme onedark
+e .
+colorscheme gruvbox-altq
+colorscheme gruvbox
+colorscheme tokyo-night
+q
+colorscheme xterm-white
+colorscheme default
+q!
+bind common enter win-activate
+colorscheme night
+colorscheme spotify
+colorscheme gruvbox-alt
+colorscheme dracula
+update-cache 
+update-cache
+add ~/Music
+clear
+live-filter
+live-filter ll
+Add ~/Music
+Clear
+set shuffle=tracks
+set auto_hide_playlists_panel=false
+set auto_reshuffle=true
+filter 
+add ~/MUsic
+update-cache -f
+win-add-l
+win-sel-cur
+win-echo-replay
+echo %f
+i
+file
+set sort_artist_format=%{albumartist|artist}
+pl-delete test
+pl-create test
+pl-
+player-stop
+pl-save edm
+_
+save ~/.config/cmus/playlists/edm.pl
+save ~/Music/playlists/edm.pl
+fset classical=genre="Rap"
+bind -f common tab win-nextn
+clear -l
+gruvbox 
+colorscheme gruvbox-warm
+clear & add ~/Music
+help
+?
+shell 
+live-filter 
+fset classical=genre="Rock"
+h
+keybinds
+add ~/Music/
+fset missing-tag=!stream&(artist=""|album=""|title=""|tracknumber=-1|date=-1)
+add yt-dlp/

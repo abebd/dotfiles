@@ -1,0 +1,53 @@
+### 'Onedark' Blue & Gray theme for CMus (Fully Purged)
+
+# Default text color (Mono White)
+set color_win_fg=145
+
+# Overall background color
+set color_win_bg=default
+
+# Top title area (Dark Gray bg, Blue fg)
+set color_win_title_bg=default
+set color_win_title_fg=145
+
+# Separator line in view (1) (Slate Gray)
+set color_separator=145
+
+# Bottom title line (Blue bg, Dark text)
+set color_titleline_bg=default
+set color_titleline_fg=75
+
+# Bottom status line (Dark Gray bg, Light Gray fg)
+set color_statusline_bg=default
+set color_statusline_fg=75
+
+# Command-line colors (Swapped yellow 220 out for gray 145)
+set color_cmdline_fg=145  
+set color_cmdline_bg=default
+set color_error=168
+set color_info=75  
+
+### Currently playing track ###
+# Unselected (Blue text)
+set color_win_cur=75
+
+# Active selection (Blue bg, Dark fg)
+set color_win_cur_sel_bg=75
+set color_win_cur_sel_fg=235
+
+# Inactive selection (Just Blue text, no block bg)
+set color_win_inactive_cur_sel_bg=default
+set color_win_inactive_cur_sel_fg=75
+
+### Non-playing track ###
+# Active selection (Visual Highlight - Slate Gray bg, White fg)
+set color_win_sel_bg=239
+set color_win_sel_fg=250
+
+# Inactive selection (Subtle Gray)
+set color_win_inactive_sel_bg=default
+set color_win_inactive_sel_fg=242
+
+### File browser view colors
+# Directory listing color (Blue)
+set color_win_dir=75

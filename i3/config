@@ -238,7 +238,7 @@ exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
 exec --no-startup-id xset s noblank
 
-gaps inner 10
+gaps inner 5 
 
 # Define your monitors (optional but cleaner)
 set $mon1 HDMI-0
