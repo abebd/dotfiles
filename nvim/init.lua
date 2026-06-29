@@ -16,4 +16,4 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
 
-vim.cmd[[colorscheme tokyonight-night]]
+vim.cmd[[colorscheme onedark]]
