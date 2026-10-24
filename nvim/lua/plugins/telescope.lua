@@ -8,5 +8,6 @@ return {
     keys = {
         { "<space><space>", "<cmd>Telescope find_files<cr>", desc = "Telescope Find Files" },
         { "<leader>b", "<cmd>Telescope buffers<cr>", desc = "Telecope buffers" },
+        { "<leader>t", "<cmd>Telescope tags<cr>", desc = "Telecope tags" },
     },
 }
